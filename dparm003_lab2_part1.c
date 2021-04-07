@@ -1,8 +1,8 @@
 /*	Author: dparm003
  *  Partner(s) Name: none
- *	Lab Section:
- *	Assignment: Lab #  Exercise #
- *	Exercise Description: [optional - include for your own benefit]
+ *	Lab Section: 22
+ *	Assignment: Lab 2  Exercise 1
+ *	Exercise Description: Garage Open
  *
  *	I acknowledge all content contained herein, excluding template or example
  *	code, is my own original work.
