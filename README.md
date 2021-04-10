@@ -1,1 +1,1 @@
-# CS120B_Lab2
+# CS120B_Lab
