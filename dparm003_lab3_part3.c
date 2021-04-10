@@ -1,7 +1,7 @@
 /*	Author: dparm003
  *  Partner(s) Name: None 
- *	Lab Section:
- *	Assignment: Lab 3  Exercise 2
+ *	Lab Section: 22
+ *	Assignment: Lab 3  Exercise 3
  *	Exercise Description: [optional - include for your own benefit]
  *
  *	I acknowledge all content contained herein, excluding template or example
@@ -41,7 +41,8 @@ int main(void) {
 	else if(tmpA < 0x0A) tmpC = tmpC | 0x3C;
 	else if(tmpA < 0x0D) tmpC = tmpC | 0x3E;
 	else if(tmpA <= 0x0F) tmpC = tmpC | 0x3F;
-	if((tmpA1 & 0x30) == 0x30) tmpC = tmpC | 0x80;
+	if(tmpA1 == 0x30) tmpC = tmpC | 0x80;
+	else tmpC = tmpC | 0x00;
 	PORTC = tmpC;
     }
 
