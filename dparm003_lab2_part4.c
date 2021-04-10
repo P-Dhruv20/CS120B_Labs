@@ -1,13 +1,12 @@
 /*	Author: dparm003
- *  	Partner(s) Name: None
+ *  Partner(s) Name: None
  *	Lab Section:
- *	Assignment: Lab 2  Exercise 4
- *	Exercise Description: Parking spaces 
- *	
+ *	Assignment: Lab #  Exercise #
+ *	Exercise Description: [optional - include for your own benefit]
+ *
  *	I acknowledge all content contained herein, excluding template or example
  *	code, is my own original work.
  */
-
 
 #include <avr/io.h>
 #ifdef _SIMULATE_
@@ -30,7 +29,7 @@ int main(void) {
 	tmpB = PINB;
 	tmpC = PINC;
 	total = tmpA + tmpB + tmpC;
-	tmpD = total & 0xFC;
+	tmpD = (total >> 2);
 	if(total > 0x8C) tmpD = tmpD | 0x01;	
 	if(((tmpA - tmpC) > 0x50) || ((tmpC - tmpA) > 0x50)) tmpD = tmpD | 0x02;
 	PORTD = tmpD;
