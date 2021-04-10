@@ -30,7 +30,7 @@ int main(void) {
 	tmpC = PINC;
 	total = tmpA + tmpB + tmpC;
 	tmpD = (total >> 2);
-	if(total > 0x8C) tmpD = tmpD | 0x01;	
+	if(total > 140) tmpD = tmpD | 0x01;	
 	if(((tmpA - tmpC) > 0x50) || ((tmpC - tmpA) > 0x50)) tmpD = tmpD | 0x02;
 	PORTD = tmpD;
     }
