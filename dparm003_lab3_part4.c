@@ -17,10 +17,12 @@ int main(void) {
    
 	DDRA = 0x00; PORTA = 0xFF;
 	DDRB = 0xFF; PORTB = 0x00;
+	DDRC = 0xFF; PORTC = 0x00;
 
 	unsigned char tmpALo = 0x00;
 	unsigned char tmpAHi = 0x00;
 	unsigned char tmpB = 0x00;
+	unsigned char tmpC = 0x00;
    
 	while (1) {
 	tmpALo = PINA & 0x0F;
@@ -28,9 +30,11 @@ int main(void) {
 	tmpB = 0x00;
 	tmpALo = (tmpALo << 4);
 	tmpAHi = (tmpAHi >> 4);
-	tmpB = tmpALo | tmpAHi;
+	tmpB = tmpAHi;
+	tmpC = tmpALo;
 
 	PORTB = tmpB;
+	PORTC = tmpC;
     }
 
     return 1;
