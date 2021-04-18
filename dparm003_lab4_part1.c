@@ -12,15 +12,12 @@
 #include "simAVRHeader.h"
 #endif
 
-enum SM_STATES { SM_SMStart, SM_PB0Wait, SM_PB1, SM_PB1Wait, SM_PB0} SM_STATE;
+enum SM_STATES {SM_PB0Wait, SM_PB1, SM_PB1Wait, SM_PB0} SM_STATE;
 unsigned char Tick_Toggle(unsigned char tmpA) {
 	unsigned char tmpB; 
    switch(SM_STATE) { 
-      case SM_SMStart:
-         SM_STATE = SM_PB0Wait;
-         break;
       case SM_PB0Wait:
-         if (tmpA) {
+         if (!tmpA) {
             SM_STATE = SM_PB0Wait;
          }
          else {
@@ -36,7 +33,7 @@ unsigned char Tick_Toggle(unsigned char tmpA) {
          }
          break;
       case SM_PB1Wait:
-         if (tmpA) {
+         if (!tmpA) {
             SM_STATE = SM_PB1Wait;
          }
          else {
@@ -44,7 +41,7 @@ unsigned char Tick_Toggle(unsigned char tmpA) {
          }
          break;
       case SM_PB0:
-         if (tmpA) {
+         if (!tmpA) {
             SM_STATE = SM_PB0Wait;
          }
          else {
@@ -56,8 +53,6 @@ unsigned char Tick_Toggle(unsigned char tmpA) {
          break;
    }
    switch(SM_STATE) { 
-      case SM_SMStart:
-         break;
       case SM_PB0Wait:
         tmpB = 0x01;
          break;
@@ -82,7 +77,7 @@ int main(void) {
 	unsigned char tmpA = 0x00;
 	unsigned char tmpB;
 
-	SM_STATE = SM_SMStart;
+	SM_STATE = SM_PB0Wait;
 
 	while (1) {
 	tmpA = PINA & 0x01;
