@@ -12,7 +12,7 @@
 #include "simAVRHeader.h"
 #endif
 
-enum SM_STATES {SM_Start, SM_Wait, SM_Inc, SM_Dec, SM_Res} SM_STATE;
+enum SM_STATES {SM_Start, SM_Wait, SM_Inc, SM_IncWait, SM_Dec, SM_DecWait, SM_Res} SM_STATE;
 unsigned char Tick_Toggle(unsigned char tmpA0, unsigned char tmpA1, unsigned char tmpC) {
    switch(SM_STATE) { 
       case SM_Start:
@@ -38,7 +38,7 @@ unsigned char Tick_Toggle(unsigned char tmpA0, unsigned char tmpA1, unsigned cha
             SM_STATE = SM_Res;
          }
          else {
-            SM_STATE = SM_Wait;
+            SM_STATE = SM_DecWait;
          }
          break;
       case SM_Inc:
@@ -46,17 +46,45 @@ unsigned char Tick_Toggle(unsigned char tmpA0, unsigned char tmpA1, unsigned cha
             SM_STATE = SM_Res;
          }
          else {
-            SM_STATE = SM_Wait;
+            SM_STATE = SM_IncWait;
          }
          break;
-      case SM_Res:
+	  case SM_DecWait:
+		 if (!tmpA0 && tmpA1){
+			SM_STATE = SM_DecWait;
+		 }
+		 else if (tmpA0 && tmpA1){
+			SM_STATE = SM_Res;
+		 }
+		 else if (!tmpA0 && !tmpA1){
+			SM_STATE = SM_Wait;
+		 }
+		 break;
+	  case SM_IncWait:
+		 if (tmpA0 && !tmpA1){
+			SM_STATE = SM_IncWait;
+		 }
+		 else if (tmpA0 && tmpA1){
+			SM_STATE = SM_Res;
+		 }
+		 else if (!tmpA0 && !tmpA1){
+			SM_STATE = SM_Wait;
+		 }
+		 break;
+	  case SM_Res:
             SM_STATE = SM_Wait;
          break;
       default:
          SM_STATE = SM_Wait;
          break;
    }
-   switch(SM_STATE) { 
+   switch(SM_STATE) {
+	  case SM_Start:
+		 break;
+	  case SM_DecWait:
+		 break;
+	  case SM_IncWait:
+		 break;	   
       case SM_Wait:
          break;
       case SM_Dec:
