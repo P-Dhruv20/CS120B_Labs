@@ -1,7 +1,7 @@
 /*	Author: dparm003
  *	 *  Partner(s) Name: None
  *	  *	Lab Section: 22
- *	   *	Assignment: Lab 4  Exercise 2
+ *	   *	Assignment: Lab 5  Exercise 2
  *	    *	Exercise Description: [optional - include for your own benefit]
  *	     *
  *	      *	I acknowledge all content contained herein, excluding template or example
