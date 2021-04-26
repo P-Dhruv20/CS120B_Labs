@@ -1,12 +1,14 @@
-/*	Author: dparm003
- *  Partner(s) Name: None
- *	Lab Section:
- *	Assignment: Lab 5  Exercise 1
- *	Exercise Description: [optional - include for your own benefit]
+/* Author: dparm003
+ * Lab Section: 22
+ * Assignment: Lab 5  Exercise 3
+ * Exercise Description: [optional - include for your own benefit]
  *
- *	I acknowledge all content contained herein, excluding template or example
- *	code, is my own original work.
+ * I acknowledge all content contained herein, excluding template or example
+ * code is my own original work.
+ *
+ *  Demo Link: https://youtu.be/6MJeQZ13tDI
  */
+
 #include <avr/io.h>
 #ifdef _SIMULATE_
 #include "simAVRHeader.h"
