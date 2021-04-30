@@ -14,9 +14,11 @@
 #include "simAVRHeader.h"
 #endif
 
+#include "../header/timer.h"
+
 enum SM_States { SM_Start, SM_PB0, SM_PB1, SM_PB2 } SM_State;
 
-void ToggleLights() {
+unsigned char ToggleLights() {
 unsigned char tmpB;
    switch ( SM_State ) {
       case SM_Start:
@@ -51,9 +53,10 @@ unsigned char tmpB;
       default:
          break;
    }
+	return tmpB;
 }
 
-void main() {
+int main(void) {
 	
 	DDRB = 0xFF; PORTB = 0x00;
 
@@ -61,9 +64,10 @@ void main() {
 
    TimerSet(1000);
    TimerOn(); 
-   SM_States = SM_Start;
+   SM_State = SM_Start;
    while (1) {         
       tmpB = ToggleLights();
+      PORTB = tmpB;
       while (!TimerFlag){} 
       TimerFlag = 0;     
    }
