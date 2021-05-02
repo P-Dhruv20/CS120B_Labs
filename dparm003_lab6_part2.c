@@ -53,7 +53,7 @@ unsigned char tmpB;
 		 	SM_State = SM_PB2;
 		 }
 		 else{
-			SM_State = SM_20PB0;
+			SM_State = SM_20PB1;
 		 }
 		 break;
       default:
