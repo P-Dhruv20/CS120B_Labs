@@ -16,7 +16,7 @@
 
 #include "../header/timer.h"
 
-enum SM_States { SM_Start, SM_PB0, SM_02PB1, SM_20PB1, SM_PB2 } SM_State;
+enum SM_States { SM_Start, SM_PB0, SM_Wait0, SM_02PB1, SM_20PB1, SM_Wait1, SM_PB2, SM_Wait2, SM_Wait3 } SM_State;
 
 unsigned char ToggleLights(unsigned char A0) {
 unsigned char tmpB;
@@ -26,35 +26,67 @@ unsigned char tmpB;
          break;
 	  case SM_PB0:
 	 	if(A0){
-			SM_State = SM_PB0;
+			SM_State = SM_Wait0;
 		}
 		else{
 		 	SM_State = SM_02PB1;
 		}
 		 break;
+	  case SM_Wait0:
+		if(A0){
+			SM_State = SM_PB0;
+		}
+		else{
+			SM_State = SM_Wait0;
+		}
+		break;
 	  case SM_02PB1:
 		 if(A0){
-			 SM_State = SM_02PB1;
+			SM_State = SM_Wait1;
 		 }
 		 else{
 		 	SM_State = SM_PB2;
 		 }
 		 break;
+	  case SM_Wait1:
+		if(A0){
+			SM_State = SM_02PB1;
+		}
+		else{
+			SM_State = SM_Wait1;
+		}
+		break;
 	  case SM_20PB1:
 		 if(A0){
-		 	SM_State = SM_20PB1;
+		 	SM_State = SM_Wait3;
 		 }
 		 else{
 		 	SM_State = SM_PB0;
 		 }
 		 break;
+	  case SM_Wait3:
+		if(A0){
+			SM_State = SM_20PB1;
+		}
+		else{
+			SM_State = SM_Wait3;
+		}
+		break;
 	  case SM_PB2:
 		 if(A0){
-		 	SM_State = SM_PB2;
+		 	SM_State = SM_Wait2;
 		 }
 		 else{
 			SM_State = SM_20PB1;
 		 }
+		 break;
+	  case SM_Wait2:
+		if(A0){
+			SM_State = SM_PB2;
+		}
+		else{
+			SM_State = SM_Wait2;
+		}
 		 break;
       default:
          SM_State = SM_Start;
@@ -75,6 +107,18 @@ unsigned char tmpB;
 		 break;
 	  case SM_PB2:
 		 tmpB = 0x04;
+		 break;
+	  case SM_Wait0:
+		 tmpB = 0x01;
+		 break;
+	  case SM_Wait1:
+		 tmpB = 0x02;
+		 break;
+	  case SM_Wait2:
+		 tmpB = 0x04;
+		 break;
+	  case SM_Wait3:
+		 tmpB = 0x02;
 		 break;
       default:
          break;
