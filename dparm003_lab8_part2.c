@@ -151,6 +151,8 @@ int main(void) {
 	unsigned char tmpA1 = 0x00;
 	unsigned char tmpA2 = 0x00;
 	
+	TimerSet(130);
+	TimerOn();
 	PWM_on();
 	
 	SM1_STATE = SM1_Start;
@@ -162,6 +164,8 @@ int main(void) {
 	tmpA2 = ~PINA & 0x04;
 	SystemOnOff(tmpA0);
 	ScaleUpDown(tmpA1,tmpA2);
+	while(!TimerFlag){}
+	TimerFlag = 0;
 	}
     return 1;
 }
