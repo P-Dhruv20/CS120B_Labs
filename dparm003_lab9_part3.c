@@ -156,6 +156,7 @@ int main(void) {
 	SM1_State = SM1_Start;
 	SM2_State = SM2_Start;
 	SM3_State = SM3_Start;
+	SM4_State = SM4_Start;
 	while (1) {
 		tmpA = ~PINA & 0x04;
 		
